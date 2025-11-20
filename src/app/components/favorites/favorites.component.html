@@ -1,0 +1,50 @@
+<div class="bg-white rounded-lg shadow p-4 mb-6">
+  <h3 class="text-lg font-bold mb-3">Favoritos ⭐</h3>
+  
+  <div *ngIf="favorites.length === 0" class="text-gray-500 text-sm">
+    No hay favoritos seleccionados
+  </div>
+  
+  <div *ngIf="favorites.length > 0" class="flex flex-wrap gap-2">
+    <button 
+      *ngFor="let favorite of favorites"
+      (click)="selectFavorite(favorite)"
+      class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm hover:bg-blue-600 transition-colors">
+      {{ favorite.name }}
+    </button>
+  </div>
+
+  <!-- Modal de detalles básicos -->
+  <div *ngIf="showDetails && selectedFavorite" 
+       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+       (click)="closeDetails()">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4" (click)="$event.stopPropagation()">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-bold">{{ selectedFavorite.name }}</h3>
+        <button 
+          (click)="closeDetails()"
+          class="text-gray-500 hover:text-gray-700 text-2xl leading-none">
+          ×
+        </button>
+      </div>
+      
+      <div class="flex items-center space-x-4 mb-4">
+        <img 
+          [src]="selectedFavorite.image" 
+          [alt]="selectedFavorite.name"
+          class="w-24 h-24 rounded-lg">
+        <div class="space-y-1">
+          <p><span class="font-medium">Estado:</span> {{ selectedFavorite.status }}</p>
+          <p><span class="font-medium">Especie:</span> {{ selectedFavorite.species }}</p>
+          <p><span class="font-medium">Género:</span> {{ selectedFavorite.gender }}</p>
+        </div>
+      </div>
+      
+      <button 
+        (click)="closeDetails()"
+        class="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>
