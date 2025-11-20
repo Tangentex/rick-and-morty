@@ -1,0 +1,103 @@
+<div *ngIf="character" class="bg-white rounded-lg shadow p-6">
+  <h2 class="text-2xl font-bold mb-4">Detalles del Personaje</h2>
+  
+  <!-- Imagen del personaje -->
+  <div class="mb-6 flex justify-center">
+    <img 
+      [src]="character.image" 
+      [alt]="character.name"
+      class="w-48 h-48 rounded-lg shadow-md">
+  </div>
+
+  <!-- Información básica -->
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold mb-3">Información Básica</h3>
+    <div class="space-y-2">
+      <p><span class="font-medium">Nombre:</span> {{ character.name }}</p>
+      <p><span class="font-medium">Estado:</span> {{ character.status }}</p>
+      <p><span class="font-medium">Especie:</span> {{ character.species }}</p>
+      <p><span class="font-medium">Género:</span> {{ character.gender }}</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center py-4">
+    <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+    <p class="mt-2 text-gray-600 text-sm">Cargando detalles...</p>
+  </div>
+
+  <div *ngIf="!loading">
+    <!-- Origen -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-3">Origen</h3>
+      <div *ngIf="origin" class="bg-gray-50 p-4 rounded-lg">
+        <p class="mb-2"><span class="font-medium">Nombre:</span> {{ origin.name }}</p>
+        <p class="mb-2"><span class="font-medium">Tipo:</span> {{ origin.type }}</p>
+        <p class="mb-2"><span class="font-medium">Dimensión:</span> {{ origin.dimension }}</p>
+        
+        <div *ngIf="originResident" class="mt-3 pt-3 border-t border-gray-200">
+          <p class="font-medium mb-2">Un residente de este lugar:</p>
+          <div class="flex items-center space-x-3">
+            <img 
+              [src]="originResident.image" 
+              [alt]="originResident.name"
+              class="w-12 h-12 rounded-full">
+            <p>{{ originResident.name }}</p>
+          </div>
+        </div>
+        
+        <div *ngIf="!originResident && origin.residents.length === 0" class="mt-3 pt-3 border-t border-gray-200">
+          <p class="text-gray-500">No tiene residentes</p>
+        </div>
+      </div>
+      <div *ngIf="!origin" class="bg-gray-50 p-4 rounded-lg">
+        <p class="text-gray-500">{{ character.origin.name }}</p>
+      </div>
+    </div>
+
+    <!-- Localización actual -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-3">Localización Actual</h3>
+      <div *ngIf="location" class="bg-gray-50 p-4 rounded-lg">
+        <p class="mb-2"><span class="font-medium">Nombre:</span> {{ location.name }}</p>
+        <p class="mb-2"><span class="font-medium">Tipo:</span> {{ location.type }}</p>
+        <p class="mb-2"><span class="font-medium">Dimensión:</span> {{ location.dimension }}</p>
+        
+        <div *ngIf="locationResident" class="mt-3 pt-3 border-t border-gray-200">
+          <p class="font-medium mb-2">Un residente de este lugar:</p>
+          <div class="flex items-center space-x-3">
+            <img 
+              [src]="locationResident.image" 
+              [alt]="locationResident.name"
+              class="w-12 h-12 rounded-full">
+            <p>{{ locationResident.name }}</p>
+          </div>
+        </div>
+        
+        <div *ngIf="!locationResident && location.residents.length === 0" class="mt-3 pt-3 border-t border-gray-200">
+          <p class="text-gray-500">No tiene residentes</p>
+        </div>
+      </div>
+      <div *ngIf="!location" class="bg-gray-50 p-4 rounded-lg">
+        <p class="text-gray-500">{{ character.location.name }}</p>
+      </div>
+    </div>
+
+    <!-- Episodio -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-3">Episodio</h3>
+      <div *ngIf="episode" class="bg-gray-50 p-4 rounded-lg">
+        <p class="mb-2"><span class="font-medium">Nombre:</span> {{ episode.name }}</p>
+        <p class="mb-2"><span class="font-medium">Episodio:</span> {{ episode.episode }}</p>
+        <p class="mb-2"><span class="font-medium">Fecha de emisión:</span> {{ episode.air_date }}</p>
+      </div>
+      <div *ngIf="!episode && character.episode.length === 0" class="bg-gray-50 p-4 rounded-lg">
+        <p class="text-gray-500">No tiene episodios</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!character" class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+  <p>Selecciona un personaje para ver sus detalles</p>
+</div>
