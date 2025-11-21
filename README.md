@@ -1,27 +1,82 @@
-# RickMortyApp
+# Rick and Morty App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Aplicación Angular para explorar personajes del universo de Rick and Morty usando la API oficial.
 
-## Development server
+## Características
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- ✅ Listado de personajes con paginación
+- ✅ Filtros por nombre y estado
+- ✅ Detalles completos del personaje (origen, localización, episodios)
+- ✅ Sistema de favoritos con localStorage
+- ✅ Estadísticas por especie y tipo
+- ✅ Diseño responsive con Tailwind CSS
+- ✅ Pruebas unitarias
 
-## Code scaffolding
+## Tecnologías
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17
+- Tailwind CSS
+- RxJS
+- TypeScript
+- Jasmine/Karma para testing
 
-## Build
+## Instalación
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install
+```
 
-## Running unit tests
+## Ejecutar
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+ng serve
+```
 
-## Running end-to-end tests
+La aplicación estará disponible en `http://localhost:4200`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Testing
 
-## Further help
+```bash
+ng test
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## API
+
+Esta aplicación usa la API pública de Rick and Morty:
+https://rickandmortyapi.com
+
+## Requerimientos Implementados
+
+### Requerimiento 1: Lista de personajes con filtros ✅
+- Tabla con name, status, species, type, gender y created
+- Filtro por nombre (búsqueda de texto)
+- Filtro por estado (alive, dead, unknown)
+- Optimización con debounceTime y distinctUntilChanged
+
+### Requerimiento 2: Detalles del personaje ✅
+- Imagen del personaje
+- Información de origen con un residente
+- Información de localización con un residente
+- Información de un episodio
+
+### Requerimiento 3: Sistema de favoritos ✅
+- Marcar personajes como favoritos
+- Mostrar nombres en la parte superior
+- Ver información básica al hacer click
+
+### Requerimiento 4: Totales ✅
+- Totales por species
+- Totales por type
+
+## Características Técnicas
+
+- Componentes standalone
+- Comunicación entre componentes con @Input/@Output
+- Gestión de subscripciones (unsubscribe en ngOnDestroy)
+- Operadores RxJS para optimización (debounceTime, distinctUntilChanged, switchMap)
+- LocalStorage para persistencia de favoritos
+- Diseño responsive con Tailwind CSS
+
+## Autor
+
+Desarrollado como prueba técnica
