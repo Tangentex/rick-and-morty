@@ -79,4 +79,4 @@ https://rickandmortyapi.com
 
 ## Autor
 
-Desarrollado como prueba técnica
+Victor Ocampo
