@@ -27,6 +27,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
 
   @Output() characterSelected = new EventEmitter<Character>();
   @Output() favoriteToggled = new EventEmitter<Character>();
+  @Output() charactersLoaded = new EventEmitter<Character[]>();
 
   constructor(private rickMortyService: RickMortyService) {}
 
@@ -55,11 +56,13 @@ export class CharacterListComponent implements OnInit, OnDestroy {
         this.characters = response.results;
         this.totalPages = response.info.pages;
         this.loading = false;
+        this.charactersLoaded.emit(this.characters);
       },
       error: (error) => {
         console.error('Error al buscar personajes:', error);
         this.characters = [];
         this.loading = false;
+        this.charactersLoaded.emit(this.characters);
       }
     });
   }
@@ -76,6 +79,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
         this.characters = response.results;
         this.totalPages = response.info.pages;
         this.loading = false;
+        this.charactersLoaded.emit(this.characters);
       },
       error: (error) => {
         console.error('Error al cargar personajes:', error);
